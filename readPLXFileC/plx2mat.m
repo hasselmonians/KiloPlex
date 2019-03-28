@@ -5,6 +5,6 @@ function plx = plx2mat(filename)
     build_readPLXFileC()
   end
 
-  plx = readPLXFileC(filename);
+  plx = readPLXFileC(filename, 'all');
 
 end % function
