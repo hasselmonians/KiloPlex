@@ -1,23 +1,26 @@
+# Reading PLX files into MATLAB
 
+This is a MEX function that can read data directly from a `.PLX` file, the native file format used and produced by the hardware/software made by Plexon, Inc. (www.plexon.com).
 
-This is a MEX function that can read data directly from a '.PLX' file, the native file format used and produced by the hardware/software made by Plexon, Inc. (www.plexon.com).
-
-This function is completely independent of the 'mexPlex' library distributed directly by Plexon, Inc. and is in no way supported by Plexon, Inc. so please don't contact them for help using this function.
+This function is completely independent of the `mexplex` library distributed directly by Plexon, Inc. and is in no way supported by Plexon, Inc. so please don't contact them for help using this function.
 
 It has the following features that are not supported by the official library:
-1) You can read the entire PLX file in a single call. This is substantially faster than reading the entire file using separate calls to read each separate channel and unit.
-2) You can read multiple channels/units (including a mix of spike, event, waveform, and continuous channels) in a single call.
-3) You can read a subset of the file by specify time ranges to read.
-4) You can read a subset of the file by specify a starting recording number and number of records to read.
+* You can read the entire PLX file in a single call. This is substantially faster than reading the entire file using separate calls to read each separate channel and unit.
+* You can read multiple channels/units (including a mix of spike, event, waveform, and continuous channels) in a single call.
+* You can read a subset of the file by specify time ranges to read.
+* You can read a subset of the file by specify a starting recording number and number of records to read.
 
 This function needs to be compiled prior to use. Once a compiler is set up, you can compile using the helper function 'build_readPLXFileC' (which is included with this submission). Although this function has been primarily tested under both Linux (Ubuntu) and Windows (32-bit and 64-bit), it has also been used with Mac OS X.
 
-Once the function is compiled, for detailed help run: readPLXFileC('help')
+Once the function is compiled, for detailed help run: `readPLXFileC('help')`
 
 USAGE:
+
+```matlab
 plx = readPLXFileC(filename, varargin)
 plx = readPLXFileC('help')
 plx = readPLXFileC('version')
+```
 
 INPUT:
 filename - Name of the PLX file to read.
