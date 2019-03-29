@@ -84,6 +84,9 @@ end % methods
 
 methods (Static)
 
+  [data, fid] = readPLX(filename, varargin)
+  [headers, fid, easyread] = readPLXHeaders(filename, fullread)
+
 end % static methods
 
 end % classdef

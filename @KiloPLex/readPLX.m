@@ -1,4 +1,4 @@
-function [data, fid] = readPLXFile(filename, varargin)
+function [data, fid] = readPLX(filename, varargin)
 % readPLXFile - Read data from PLX file.
 %
 % [data, fid] = readPLXFile(filename, varargin)
@@ -56,7 +56,7 @@ end
 if (nargin == 0 || isempty(filename))
     FilterSpec = {'*.plx', 'Plexon PLX File (*.plx)';
                   '*', 'All Files'};
-    [fname, pathname] = uigetfile(FilterSpec, 'Select a Plexon PLX file');        
+    [fname, pathname] = uigetfile(FilterSpec, 'Select a Plexon PLX file');
     if(fname == 0); data = struct(); return; end
     filename = strcat(pathname, fname);
 end
@@ -77,7 +77,7 @@ if(fid == -1); error('readPLXData:FileError','Error opening file'); end
 
 % Lets get the header data, so we can use it to parse the optional inputs.
 % this will double check the data if debug is true
-[headers,~,easyread] = readPLXHeaders(fid, logical(DEBUG));
+[headers,~,easyread] = Kiloplex.readPLXHeaders(fid, logical(DEBUG));
 
 % if we wont be able to parse our dataset, return
 if ~easyread, return; end
@@ -169,7 +169,7 @@ while ~isempty(args)
             else getslow(:) = ~isnan(slowmap);
             end
         case 'nocontinuous'
-            getslow(:) = false;            
+            getslow(:) = false;
     end
     % delete the query you just did and move forward
     args = args(2:end);
@@ -187,13 +187,13 @@ if(any(getspikes))
         data.spikes(ii,1).channel = channel;
         if(getspikes(channel))
             data.spikes(ii,1).ts = zeros(sum(headers.tscounts(:,channel)),2);
-        else 
+        else
         end
         % and wave
         if(getspikes(channel))
             data.spikes(ii,1).wave = zeros([sum(headers.tscounts(:,channel))...
                 ,headers.numPointsWave],'int16');
-        else data.spikes(ii,1).wave = []; 
+        else data.spikes(ii,1).wave = [];
         end
     end
 end
@@ -244,37 +244,37 @@ while(~feof(fid))
     % read this datablock;
     type = fread(fid,1,'short');
     if(isempty(type)); break; end
-    
+
     datablocks = datablocks + 1;
-    
+
     % if debugging, lets plot our progress
     if(DEBUG && mod(datablocks,100000)==0); fprintf('Block: %.0f\n',datablocks); end
-    
+
     %%%% get the header information before proceeding %%%%
-    
-    
+
+
     % max and mins of this dataset
     upperts = fread(fid,1,'ushort');
     lowerts = fread(fid,1,'uint32');
-    
+
     % which channel is it
     chan = fread(fid,1,'short');
-    
+
     % is it a unit? usually no
     unit = fread(fid,1,'short');
     % number of 'waves'
     nwaves = fread(fid,1,'short');
     % words per wave (datapoints)
     nwords = fread(fid,1,'short');
-    
+
     ts = upperts*2^32+lowerts;
-    
+
     try
         waves = fread(fid,[nwords nwaves],'*short');
     catch
         fprintf('The fuckup is in this block: %d \n', datablock);
     end
-    
+
     %%%%%% if we want to pull this data, read through all of it %%%%%%%
     if(type == 1 && getspikes(chan))
         % spikes should be a single vector
@@ -293,11 +293,11 @@ while(~feof(fid))
     elseif(type == 5 && getslow(chan+1))
         % right, so these fragments come in as a matrix of timestamps, and
         % they may or may not be ocntinuous from last dataset
-        
+
         % Add in code here to automatically check if the fragment is
         % continuous from previous fragment and if so combine the two.
         fragcount(slowmap(chan+1)) = fragcount(slowmap(chan+1)) + 1;
-        
+
         data.continuous(slowmap(chan+1),1).ts(fragcount(slowmap(chan+1)),:) = [ts nwaves*nwords];
         data.continuous(slowmap(chan+1),1).ad(adcount(slowmap(chan+1))+1:adcount(slowmap(chan+1))+nwaves*nwords) = waves(:);
         adcount(slowmap(chan+1)) = adcount(slowmap(chan+1)) + nwaves*nwords;
@@ -314,10 +314,10 @@ function getlist = parsecell(arg, names, nums, map)
     % First column is the channel numbers, second column is sort order.
     offset = find(map==1)-nums(1);
     getlist = false(size(map));
-    
+
     namelist = arg(cellfun(@ischar,arg));
     numlist = arg{cellfun(@isscalar,arg)};
-    
+
     getlist(nums(ismember(names,namelist))+offset,1) = true;
     getlist(nums(ismember(nums, numlist))+offset,1) = true;
 end

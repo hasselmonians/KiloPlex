@@ -19,7 +19,7 @@ function [headers, fid, easyread] = readPLXHeaders(filename, fullread)
 %
 % Output:
 %   headers - PLX file header information.
-%   fid     - File-ID of the 
+%   fid     - File-ID of the
 %
 % WARNING: Plexon didn't have much foresight for the number of
 % units/channel, and only left enough space in the headers for 4
@@ -60,7 +60,7 @@ easyread=true;
 if (nargin == 0 || isempty(filename))
     FilterSpec = {'*.plx', 'Plexon PLX File (*.plx)';
                   '*', 'All Files'};
-    [fname, pathname] = uigetfile(FilterSpec, 'Select a Plexon PLX file');        
+    [fname, pathname] = uigetfile(FilterSpec, 'Select a Plexon PLX file');
     if(fname == 0); headers = struct([]); return; end
     filename = strcat(pathname, fname);
 end
@@ -206,7 +206,7 @@ for ii = 1:headers.numDSPChannels;
         headers.chans(ii,1).comment = '';
         fread(fid, 128, 'char');
     end
-    
+
     if(headers.version>=106)
         headers.chans(ii,1).srcid = fread(fid, 1, 'uchar');
         fread(fid, 1, 'uchar');
@@ -230,7 +230,7 @@ for ii = 1:headers.numEventChannels;
         headers.evchans(ii,1).comment = '';
         fread(fid, 128, 'char');
     end
-    
+
     if(headers.version>=106)
         headers.evchans(ii,1).srcid = fread(fid, 1, 'uchar');
         fread(fid, 1, 'uchar');
@@ -251,7 +251,7 @@ for ii = 1:headers.numSlowChannels;
     headers.slowchans(ii,1).adgain = fread(fid, 1, 'int32');
     headers.slowchans(ii,1).enabled = fread(fid, 1, 'int32');
     headers.slowchans(ii,1).preampgain = fread(fid, 1, 'int32');
-    
+
     if(headers.version>=104)
         headers.slowchans(ii,1).spikechannel = fread(fid, 1, 'int32');
     else
@@ -265,7 +265,7 @@ for ii = 1:headers.numSlowChannels;
         headers.slowchans(ii,1).comment = '';
         fread(fid, 128, 'char');
     end
-    
+
     if(headers.version>=106)
         headers.slowchans(ii,1).srcid = fread(fid, 1, 'uchar');
         fread(fid, 1, 'uchar');
@@ -321,7 +321,7 @@ slowfrags  = zeros(1,  maxslow+1);
 fseek(fid,headers.datastart,'bof');
 
 numpointswave = headers.numPointsWave;
-   
+
 
 
 datablocks = 0;
@@ -331,7 +331,7 @@ dbuf = int16(zeros(dbufsize,1));
 ndbuf = 0;
 dbufloc = 1;
 
-% this function 
+% this function
     function fillbuffer()
         dbufloc(1) = dbufloc-ndbuf;
         % ndbuf is how far away is this from the end?
@@ -357,7 +357,7 @@ while(ndbuf > 0)
     if(DEBUG && mod(datablocks,100000)==0);
         fprintf('Block: %.0f\n',datablocks);
     end
-    
+
     if(ndbuf-dbufloc>=7)
         dbh(1:8) = dbuf(dbufloc:dbufloc+7);
         dbufloc = dbufloc+8;
@@ -372,7 +372,7 @@ while(ndbuf > 0)
         dbufloc = dbufloc+needvals;
     end
     dbufloc = dbufloc+double(dbh(7)*dbh(8));
-    
+
     % if its neuronal data
     if(dbh(1)==1)
         tscounts(dbh(6)+1,dbh(5)) = tscounts(dbh(6)+1,dbh(5)) + 1;
