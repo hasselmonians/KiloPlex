@@ -1,5 +1,10 @@
-ops.chanMap             = 'D:\GitHub\KiloSort2\configFiles\neuropixPhase3A_kilosortChanMap.mat';
-% ops.chanMap = 1:ops.Nchan; % treated as linear probe if no chanMap file
+%% File paths
+
+ops.chanMap   = '/projectnb/hasselmogrp/hoyland/kiloplex/channel_map.m';
+ops.fproc     = []; % will be determined by batch function arguments
+ops.fbinary   = []; % will be determined by batch function arguments
+
+%% General settings
 
 % sample rate
 ops.fs = 30000;
@@ -30,7 +35,14 @@ ops.sigmaMask = 30;
 
 % threshold crossings for pre-clustering (in PCA projection space)
 ops.ThPre = 8;
-%% danger, changing these settings can lead to fatal errors
+
+% time range to sort
+ops.trange = [0 Inf];
+
+% total number of channels in recording
+ops.NchanTOT = 96;
+
+%% Experimental settings
 % options for determining PCs
 ops.spkTh           = -6;      % spike threshold in standard deviations (-6)
 ops.reorder         = 1;       % whether to reorder batches for drift correction.
