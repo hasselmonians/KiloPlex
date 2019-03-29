@@ -80,12 +80,19 @@ methods
 
   end % constructor
 
+  function publish(self, location)
+    % saves the options as a .mat file to be loaded before using kilosort
+    % location is a filepath to the output
+    save(location, 'self.options');
+  end
+
 end % methods
 
 methods (Static)
 
   [data, fid] = readPLX(filename, varargin)
   [headers, fid, easyread] = readPLXHeaders(filename, fullread)
+  batchFunction(index, batchname, location, outfile, test)
 
 end % static methods
 
