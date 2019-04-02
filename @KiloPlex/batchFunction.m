@@ -25,6 +25,10 @@ function batchFunction(index, location, batchname, outfile, test)
 
   %% Pre-process the data
 
+  % preprocess to produce temp_wh$index.dat
+  results   = preprocessDataSub(options);
+
+  % time-reordering as a function of drift
   results   = clusterSingleBatches(preprocessDataSub(options));
 
   %% Main tracking and tempalte matching algorithm
