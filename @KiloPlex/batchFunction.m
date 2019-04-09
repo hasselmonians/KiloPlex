@@ -14,7 +14,7 @@ function batchFunction(index, location, batchname, outfile, test)
 
   %% Compile
   mex -setup C++
-  mexGPUall
+  run(which('mexGPUall'))
 
   %% Set up options determined at runtime
 
