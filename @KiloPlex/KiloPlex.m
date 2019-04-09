@@ -16,7 +16,7 @@ methods
 
     %% File paths
 
-    options.chanMap   = '/projectnb/hasselmogrp/hoyland/kiloplex/channel_map.m';
+    options.chanMap   = '/projectnb/hasselmogrp/hoyland/KiloPlex/channel_map.m';
     options.fproc     = []; % will be determined by batch function arguments
     options.fbinary   = []; % will be determined by batch function arguments
 
