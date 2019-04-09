@@ -87,7 +87,7 @@ methods
     if ~exist(location, 'file')
       mkdir(location);
     end
-    save(location, 'options');
+    save(fullfile(location, 'options.mat'), 'options');
   end
 
 end % methods
