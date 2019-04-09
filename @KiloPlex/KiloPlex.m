@@ -83,7 +83,11 @@ methods
   function publish(self, location)
     % saves the options as a .mat file to be loaded before using kilosort
     % location is a filepath to the output
-    save(location, 'self.options');
+    options = self.options;
+    if ~exist(location, 'file')
+      mkdir(location);
+    end
+    save(location, 'options');
   end
 
 end % methods
