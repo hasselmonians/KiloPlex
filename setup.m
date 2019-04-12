@@ -10,4 +10,4 @@ r.batchscriptpath = which('KiloPlex-batch-script.sh');
 r.project         = 'hasselmogrp';
 r.verbose         = true;
 
-r.batchify();
+r                 = r.batchify();
