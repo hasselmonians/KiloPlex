@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-#$ -l gpus=0.5
+#$ -l gpus=1
 #$ -l gpu_c=3.5
 #$ -o log
 #$ -e err
