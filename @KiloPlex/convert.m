@@ -25,7 +25,7 @@ function data = convert(data, filepath, verbose)
 
   w = whos('data');
 
-  if w.class == 'int16'
+  if strcmp(w.class, 'int16')
     if verbose
       disp('[INFO] data are already of class int16')
     end
