@@ -16,7 +16,7 @@ function data = convert(data, verbose)
       disp('[INFO] data are already of class int16')
     end
   else
-    data = data ./ min(data(:));
+    data = data ./ min(abs(data(:)));
     if verbose
       disp('[INFO] scaling data by min(data(:))')
     end
