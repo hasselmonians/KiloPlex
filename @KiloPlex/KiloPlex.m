@@ -98,6 +98,7 @@ methods (Static)
   [headers, fid, easyread] = readPLXHeaders(filename, fullread)
   batchFunction(index, batchname, location, outfile, test)
   plx = plx2mat(filename)
+  data = convert(data, filepath, verbose)
 
 end % static methods
 
