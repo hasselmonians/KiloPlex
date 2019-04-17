@@ -18,7 +18,7 @@ function data = convert(data, verbose)
   else
     data = data ./ min(nonzeros(abs(data(:))));
     if verbose
-      disp('[INFO] scaling data by min(data(:))')
+      disp('[INFO] scaling data by nonzero absolute minimum')
     end
     if verbose
       disp('[INFO] converting to int16')
