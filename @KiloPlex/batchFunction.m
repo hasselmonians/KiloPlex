@@ -6,7 +6,7 @@ function batchFunction(index, location, batchname, outfile, test)
     addpath(genpath('/projectnb/hasselmogrp/hoyland/MLE-time-course/'))
     addpath(genpath('/projectnb/hasselmogrp/hoyland/RatCatcher/'))
     addpath(genpath('/projectnb/hasselmogrp/hoyland/KiloPlex/'))
-    addpath(genpath('/projectnb/hasselmogrp/hoyland/KiloSort2/'))
+    addpath(genpath('/projectnb/hasselmogrp/hoyland/Kilosort2/'))
     addpath(genpath('/projectnb/hasselmogrp/hoyland/srinivas.gs_mtools'))
     addpath(genpath('/projectnb/hasselmogrp/hoyland/CMBHOME/'))
     import CMBHOME.*
