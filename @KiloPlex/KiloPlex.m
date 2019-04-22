@@ -80,17 +80,6 @@ methods
 
   end % constructor
 
-  function filepath = publish(self, location, filename)
-    % saves the options as a .mat file to be loaded before using kilosort
-    % location is a filepath to the output
-    options = self.options;
-    if ~exist(location, 'file')
-      mkdir(location);
-    end
-    filepath = fullfile(location, filename);
-    save(filepath, 'options');
-  end
-
 end % methods
 
 methods (Static)
