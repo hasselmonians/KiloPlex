@@ -7,10 +7,10 @@ function channel_map = createChannelMap(self, filepath)
 
   Nchannels = self.options.NchanTOT;
   connected = true(Nchannels,1);
-  chanMap 	= 1:NChannels;
+  chanMap 	= 1:Nchannels;
   chanMap0ind = chanMap - 1;
   xcoords 	= corelib.vectorise(repmat([1 2 3 4]', 1, Nchannels/4));
-  ycoords 	= corelib.vectorise(repmat(1:NChannels/4, 4, 1));
+  ycoords 	= corelib.vectorise(repmat(1:Nchannels/4, 4, 1));
   kcoords 	= ones(Nchannels, 1);
   fs 				= self.options.fs;
   save(filepath, 'chanMap', 'chanMap0ind', 'xcoords', 'ycoords', 'kcoords', 'fs');
