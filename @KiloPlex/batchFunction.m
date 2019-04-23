@@ -22,7 +22,7 @@ function batchFunction(index, location, batchname, outfile, test)
   load(fullfile(location, ['options-' batchname '.mat']));
 
   % generate an 'fproc' file location
-  options.fproc = fullfile(location, batchname, ['temp_wh.dat']);
+  options.fproc = fullfile(location, [batchname '-temp_wh.dat']);
 
   % load the entire filename file
   % this is slow, but MATLAB has clunky textread options
