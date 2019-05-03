@@ -243,3 +243,6 @@ TSWLatexianTemp*
 
 # ignore mex stuff
 *.mexa64
+
+# ignore matlab stuff
+*.mat
