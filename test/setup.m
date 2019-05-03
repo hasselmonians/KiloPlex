@@ -11,13 +11,15 @@ r.batchscriptpath = which('KiloPlex-batch-script.sh');
 r.project         = 'hasselmogrp';
 r.verbose         = true;
 
-% create the options file
-getOptions;
-r.lamplight(options);
+r = r.validate();
 
 % copy the channel map file
 % downloaded (and renamed) from data.cortexlab.net
-copyfile(which('chanMap.mat'), r.localpath);
+copyfile(which('channel_map.mat'), fullfile(r.localpath, ['channel_map-' r.batchname '.mat']));
+
+% create the options file
+getOptions;
+r.lamplight(options);
 
 % perform the batching process
 r                 = r.batchify();
