@@ -5,8 +5,10 @@ options.showfigures         = 1;
 
 options.datatype            = 'dat';  % binary ('dat', 'bin') or 'openEphys'
 options.root                = 'J:\Hopkins\20160722';
-options.fbinary             = fullfile(options.root, 'Hopkins_20160722_g0_t0.imec.ap_CAR.bin'); % will be created for 'openEphys'
-options.fproc               = fullfile(options.root, 'temp_wh.dat'); % residual from RAM of preprocessed data
+% options.fbinary             = fullfile(options.root, 'Hopkins_20160722_g0_t0.imec.ap_CAR.bin'); % will be created for 'openEphys'
+% options.fproc               = fullfile(options.root, 'temp_wh.dat'); % residual from RAM of preprocessed data
+options.fbinary             = [];
+options.fproc               = [];
 
 options.fs                  = 30000;        % sampling rate
 options.NchanTOT            = 385;           % total number of channels
