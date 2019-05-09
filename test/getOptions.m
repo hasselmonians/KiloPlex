@@ -1,7 +1,15 @@
 % options file for data from N. Steinmetz
 
+ops.verbose = 1;
+
 % sample rate
-ops.fs = 30000;  
+ops.fs = 30000;
+
+% number of active channels
+ops.Nchan = 374;
+
+% total number of channels
+ops.NChanTOT = 385;
 
 % frequency for high pass filtering (150)
 ops.fshigh = 150;   
