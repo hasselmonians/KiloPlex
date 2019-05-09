@@ -2,8 +2,6 @@
 
 options.verbose = 1;
 
-options.chanMap   = '/projectnb/hasselmogrp/hoyland/KiloPlex/channel_map.m';
-
 % sample rate
 options.fs = 30000;
 

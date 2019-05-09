@@ -16,6 +16,7 @@ r = r.validate();
 % copy the channel map file
 % downloaded (and renamed) from data.cortexlab.net
 copyfile(which('channel_map.mat'), fullfile(r.localpath, ['channel_map-' r.batchname '.mat']));
+options.chanMap = fullfile(r.localpath, ['channel_map-' r.batchname '.mat']);
 
 % create the options file
 getOptions;
