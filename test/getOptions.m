@@ -9,7 +9,7 @@ options.fs = 30000;
 options.Nchan = 374;
 
 % total number of channels
-options.NChanTOT = 385;
+options.NchanTOT = 385;
 
 % frequency for high pass filtering (150)
 options.fshigh = 150;   
