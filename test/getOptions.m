@@ -11,6 +11,9 @@ options.Nchan = 374;
 % total number of channels
 options.NchanTOT = 385;
 
+% time range to sort
+options.trange = [0 Inf];
+
 % frequency for high pass filtering (150)
 options.fshigh = 150;   
 

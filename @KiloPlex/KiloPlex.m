@@ -24,6 +24,9 @@ methods
 
     % sample rate
     options.fs = 30000;
+    
+    % time rnge to sort
+    options.trange = [0 Inf];
 
     % frequency for high pass filtering (150)
     options.fshigh = 150;
