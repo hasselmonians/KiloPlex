@@ -53,7 +53,7 @@ function batchFunction(index, location, batchname, outfile, test)
 
   % save the data
 
-  outfile = [outfile(1:end-2), '.mat'];
+  outfile = [outfile(1:end-4), '.mat'];
   save(outfile, 'results');
 
   %% Cleanup
