@@ -3,7 +3,6 @@ function batchFunction(index, location, batchname, outfile, test)
   % runs kilosort
 
   if ~test
-    addpath(genpath('/projectnb/hasselmogrp/hoyland/MLE-time-course/'))
     addpath(genpath('/projectnb/hasselmogrp/hoyland/RatCatcher/'))
     addpath(genpath('/projectnb/hasselmogrp/hoyland/KiloPlex/'))
     addpath(genpath('/projectnb/hasselmogrp/hoyland/KiloSort/'))
