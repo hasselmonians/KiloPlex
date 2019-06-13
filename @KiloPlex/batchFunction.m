@@ -31,27 +31,18 @@ function batchFunction(index, location, batchname, outfile, test)
 
   %% Pre-process the data
 
-  % preprocess to produce temp_wh.dat (saved at options.fproc)
-  results   = preprocessDataSub(options);
+  [results, data, uproj] = preprocessData(options);
 
-  % time-reordering as a function of drift
-  results   = clusterSingleBatches(preprocessDataSub(options));
+  %% Processing
 
-  %% Main tracking and template matching algorithm
-
-  results   = learnAndSolve8b(results);
-  results   = find_merges(results, 1);
-  results   = splitAllClusters(results, 1);
-  results   = splitAllClusters(results, 0);
-  results   = set_cutoff(results);
+  % fit templates iteratively
+  results = fitTemplates(results, data, uproj);
+  % extract final spike times (overlapping extraction)
+  results = fullMPMU(results, data);
 
   %% Post-process the data
 
-  results.cProj = [];
-  results.cProjPC = [];
-
   % save the data
-
   outfile = [outfile(1:end-4), '.mat'];
   save(outfile, 'results');
 
