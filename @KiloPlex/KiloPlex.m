@@ -28,9 +28,6 @@ methods
     ops.showfigures         = 1; % whether to plot figures during optimization
 
     ops.datatype            = 'dat';  % binary ('dat', 'bin') or 'openEphys'
-    ops.fbinary             = 'C:\DATA\Spikes\Piroska\piroska_example_short.dat'; % will be created for 'openEphys'
-    ops.fproc               = 'C:\DATA\Spikes\Piroska\temp_wh.dat'; % residual from RAM of preprocessed data
-    ops.root                = 'C:\DATA\Spikes\Piroska'; % 'openEphys' only: where raw files are
 
     ops.fs                  = 25000;        % sampling rate		(omit if already in chanMap file)
     ops.NchanTOT            = 32;           % total number of channels (omit if already in chanMap file)
@@ -44,8 +41,6 @@ methods
     ops.nSkipCov            = 1; % compute whitening matrix from every N-th batch (1)
     ops.whiteningRange      = 32; % how many channels to whiten together (Inf for whole probe whitening, should be fine if Nchan<=32)
 
-    % define the channel map as a filename (string) or simply an array
-    ops.chanMap             = 'C:\DATA\Spikes\Piroska\chanMap.mat'; % make this file using createChannelMapFile.m
     ops.criterionNoiseChannels = 0.2; % fraction of "noise" templates allowed to span all channel groups (see createChannelMapFile for more info).
     % ops.chanMap = 1:ops.Nchan; % treated as linear probe if a chanMap file
 
@@ -81,8 +76,8 @@ methods
     ops.nFiltMax        = 10000;   % maximum "unique" spikes to consider (10000)
 
     % load predefined principal components (visualization only (Phy): used for features)
-    dd                  = load('PCspikes2.mat'); % you might want to recompute this from your own data
-    ops.wPCA            = dd.Wi(:,1:7);   % PCs
+    % dd                  = load('PCspikes2.mat'); % you might want to recompute this from your own data
+    % ops.wPCA            = dd.Wi(:,1:7);   % PCs
 
     % options for posthoc merges (under construction)
     ops.fracse  = 0.1; % binning step along discriminant axis for posthoc merges (in units of sd)
