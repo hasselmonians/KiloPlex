@@ -14,3 +14,6 @@ The `convert` function scales matrices and converts to a `KiloSort`-readable for
 
 Spike sorting is done through `RatCatcher`. Instantiate a `RatCatcher` object,
 and use the `'KiloPlex'` protocol. See the `setup` script for an example.
+
+## Kilosort1
+Looking for Kilosort 1? Look here: https://github.com/hasselmonians/KiloPlex/tree/KiloSort1
